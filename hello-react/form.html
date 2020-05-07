@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    
+    <script type="text/babel">
+      // class NameForm extends React.Component{
+      //   constructor(props){
+      //     super(props);
+      //     this.state = {
+      //       value: "",
+      //       text:"",
+      //       idol:"xue"
+      //     };
+      //     this.handleChange = this.handleChange.bind(this);
+      //     this.handleSubmit = this.handleSubmit.bind(this);
+      //     this.handleText = this.handleText.bind(this);
+      //     this.handleIdol = this.handleIdol.bind(this);
+      //   }
+      //   handleChange(event) {
+      //     this.setState({
+      //       value: event.target.value.toUpperCase()
+      //     });
+      //   }
+      //   handleText(event){
+      //     this.setState({
+      //       text: event.target.value
+      //     })
+      //   }
+      //   handleIdol(event){
+      //     this.setState({
+      //       idol: event.target.value
+      //     })
+      //   }
+      //   handleSubmit(event) {
+      //     // alert("提交的名字: " + this.state.value);
+      //     // alert("提交的名字: " + this.state.value);
+      //     // alert("文本: " + this.state.text);
+      //     alert("我的爱豆: " + this.state.idol);  
+      //     event.preventDefault();
+      //   }
+      //   render(){
+      //     return (
+      //       <form onSubmit={this.handleSubmit}>
+      //         <label>
+      //           名字: 
+      //           <input type="text" value={this.state.value} onChange={this.handleChange} />
+      //           <textarea value={this.state.text} onChange={this.handleText} />
+      //           <select value={this.state.idol} onChange={this.handleIdol}>
+      //             <option value="xue">薛之谦</option>
+      //             <option value="zhao">赵丽因</option>
+      //             <option value="zhou">周杰伦</option>
+      //           </select>
+      //         </label>
+      //         <input type="submit" value="提交" />
+      //       </form>
+      //     )
+      //   }
+      // }
+      // ReactDOM.render(
+      //   <NameForm />,
+      //   document.getElementById("root")
+      // )
+
+      // 多个输入框处理
+      class Reservation extends React.Component{
+        constructor(props){
+          super(props);
+          this.state={
+            isGoing: true,
+            numberOfGuests: 2
+          };
+          this.handleInputChange=this.handleInputChange.bind(this);
+          this.handleSubmit=this.handleSubmit.bind(this);
+        }
+        handleInputChange(event){
+          const target = event.target;
+          const type = target.type;
+          const name = target.name;
+          const value = type=="checkbox"? target.checked:target.value;
+          this.setState({
+            [name]: value
+          })
+        }
+        handleSubmit(event){
+          alert("是否参加:"+this.state.isGoing+"; 人数"+this.state.numberOfGuests);
+          event.preventDefault();
+        }
+        render(){
+          return(
+            <form onSubmit={this.handleSubmit}>
+              <label>
+                是否参加:
+                <input 
+                  type="checkbox" 
+                  name="isGoing"
+                  checked={this.state.isGoing}
+                  onChange={this.handleInputChange} />
+              </label>
+              <label>
+                参加人数:
+                <input 
+                  type="number" 
+                  name="numberOfGuests"
+                  value={this.state.numberOfGuests}
+                  onChange={this.handleInputChange} />
+              </label>
+              <input 
+                  type="submit" 
+                  value="提交"
+                  onChange={this.handleSubmit} />
+            </form>
+            
+          )
+        };
+      }
+      ReactDOM.render(
+        <Reservation />,
+        document.getElementById("root")
+      )
+
+      // const mountNode=document.getElementById("root")
+      // ReactDOM.render(<input value="hi" />, mountNode);
+
+      // setTimeout(function() {
+      //   ReactDOM.render(<input value={null} />, mountNode);
+      // }, 1000);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    
+    <script type="text/babel">
+      // const number = [1,2,3,4,5];
+      // const lists = number.map((num)=> 
+      //   <li>{num}</li>
+      // )
+      // console.log(lists);
+      // ReactDOM.render(
+      //   <ul>{lists}</ul>,
+      //   document.getElementById('root')
+      // )
+      function NumberList(props) {
+        const num = props.numbers;
+        // const lists = num.map((number)=>
+        //   <li key={number.toString()}>{number}</li>
+        // )
+        return (
+          <ul>
+            {num.map((number)=>
+              <li key={number}>{number}</li>
+            )}
+          </ul>
+        )
+      }
+      const numbers = [1,2,3,4,5]
+      ReactDOM.render(
+        <NumberList numbers={numbers} />,
+        document.getElementById("root")
+      )
+    </script>
+  </body>
+</html>

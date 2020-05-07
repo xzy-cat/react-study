@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      // const element = <h1>Hello World!</h1>
+      // ReactDOM.render(
+      //   element,
+      //   document.getElementById('root')
+      // );
+      // function tick() {
+      //   const element = (
+      //     <div>
+      //       <h1>Hello, world!</h1>
+      //       <h2>It is {new Date().toLocaleTimeString()}.</h2>
+      //     </div>
+      //   );
+      //   ReactDOM.render(element, document.getElementById('root'));
+      // }
+      // setInterval(tick, 1000);
+      // function Welcome(props){
+      //   return <h1>Hello,{props.name}</h1>
+      // }
+      // function App(props){
+      //   return (
+      //     <div>
+      //       <Welcome name="张三" />
+      //       <Welcome name="李四" />
+      //       <Welcome name="薛三岁" />
+      //       <h2>Hello, {props.name}</h2>
+      //     </div>
+          
+      //   )
+      // }
+      // // const element = <Welcome name="Sara"/>;
+      // ReactDOM.render(
+      //   <App name="康康" />,
+      //   document.getElementById("root")
+      // );
+      // function Clock(props){
+      //   return (
+      //     <div>
+      //       <h1>北京时间:</h1>
+      //       <h2>{props.data.toLocaleTimeString()}</h2>
+      //     </div>
+      //   )
+      // }
+      class Clock extends React.Component{
+        constructor(props) {
+          super(props);
+          this.state = {date: new Date()};
+        }
+        componentDidMount() {
+          this.timerID = setInterval(()=>this.tick(),1000)
+        }
+        tick() {
+          // this.setState({date: new Date()})
+          this.setState({date: new Date()})
+        }
+        componentWillUnmount() {
+          clearInterval(this.timerID);
+        }
+        render(){
+          return (
+            <div>
+              <h1>北京时间:</h1>
+              <FormatterDate date={this.state.date}/>
+            </div>
+          )
+        }
+      }
+      function FormatterDate(props) {
+        return <h2>{props.date.toLocaleTimeString()}</h2>;
+      }
+      function App() {
+        return (
+          <div>
+            <Clock />
+            <Clock />
+            <Clock />
+          </div>
+        )
+      };
+      ReactDOM.render(
+        <App />,
+        document.getElementById("root")
+      );
+      
+      
+      
+
+    </script>
+  </body>
+</html>

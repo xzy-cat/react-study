@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    
+    <script type="text/babel">
+      // function UserGreeting() {
+      //   return <h1>welcome back</h1>
+      // }
+      // function CustomerGreeting() {
+      //   return <h1>please sign up</h1>
+      // }
+      // function Greeting(props) {
+      //   const isLogin = props.isLogin;
+      //   if (isLogin) {
+      //     return <UserGreeting />
+      //   }
+      //   return <CustomerGreeting />
+      // }
+      // function LoginButton(props) {
+      //   return (
+      //     <button onClick={props.onClick}>
+      //       Login
+      //     </button>
+      //   )
+      // }
+      // function LogoutButton(props) {
+      //   return (
+      //     <button onClick={props.onClick}>
+      //       Logout
+      //     </button>
+      //   )
+      // }
+
+      // class LoginControl extends React.Component {
+      //   constructor (props) {
+      //     super(props);
+      //     this.state = {isLogin: true};
+      //     this.handleLoginClick = this.handleLoginClick.bind(this);
+      //     this.handleLogoutClick = this.handleLogoutClick.bind(this);
+      //   }
+      //   handleLoginClick() {
+      //     this.setState({isLogin: true});
+      //   }
+      //   handleLogoutClick() {
+      //     this.setState({isLogin: false});
+      //   }
+      //   render() {
+      //     const isLogin = this.state.isLogin;
+      //     let button;
+      //     if (isLogin) {
+      //       button = <LogoutButton onClick={this.handleLogoutClick}></LogoutButton>
+      //     }else{
+      //       button = <LoginButton onClick={this.handleLoginClick}></LoginButton>
+      //     }
+      //     return (
+      //       <div>
+      //         <Greeting isLogin={isLogin}/>
+      //         {button}
+      //       </div>
+      //     )
+          
+      //   }
+      // }
+
+      // ReactDOM.render(
+      //   <LoginControl />,
+      //   document.getElementById("root")
+      // )
+
+
+      // 预算符
+      // function Mailbox(props) {
+      //   return (
+      //     <div>
+      //       <h1>Hello</h1>
+      //       {props.message.length > 0 && 
+      //         <h2>
+      //           You have {props.message.length} unrend messages.
+      //         </h2>
+      //       }
+      //     </div>
+      //   )
+      // }
+      // const message = ["1","2","3"];
+      // ReactDOM.render(
+      //   <Mailbox message={message} />,
+      //   document.getElementById("root")
+      // )
+
+      // 三目运算符
+      function Warning(props) {
+        const isshow = props.isshow;
+        if (!isshow) return null
+        else return (<div>Warning!</div>)
+      }
+      class Page extends React.Component {
+        constructor(props){
+          super(props);
+          this.state={isshow: true};
+          this.toggleShow=this.toggleShow.bind(this);
+        }
+        toggleShow() {
+          this.setState(state=>(
+            {isshow: !this.state.isshow}
+          ))
+        }
+        render(){
+          return (
+            <div>
+              <Warning isshow={this.state.isshow}/>
+              <button onClick={this.toggleShow}>{this.state.isshow? "hide":"show"}</button>
+            </div>
+          )
+        }
+      }
+      ReactDOM.render(
+        <Page />,
+        document.getElementById("root")
+      )
+      
+
+    </script>
+  </body>
+</html>
